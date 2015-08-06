@@ -1,4 +1,4 @@
-console.log('spikes.js is connected')
+console.log('spikes.js is connected');
 
 
 
@@ -33,34 +33,23 @@ getRandomMove();*/
 //I spiked with a table, the below, also put the table into the html but I haven't been able to
 //figure out how to get it to work for all of them yet, Maybe I should make a issue on github
 //about it
+
 window.onload = function() {
-function modifyText() {
-  var t2 = document.getElementById("t2");
-  if (t2.firstChild.nodeValue == "null") {
-    t2.firstChild.nodeValue = "x";
-  } else {
-    t2.firstChild.nodeValue = "null";
-  }
+  var boardSpace = $('.board-space');
+  function modifyText() {
+    if (this.innerHTML === "null") {
+      this.innerHTML = 'x';
+    }   else {
+      alert ('please choose an open square');
+    }
+  };
+  // add event listener to table
+  boardSpace.on('click', modifyText);
 }
 
-
-// add event listener to table
-
-
-
-var el = document.getElementById("t2");
-el.addEventListener("click", modifyText, false);
-
-
-
-
-//I'm trying to get the moves to display on my table here
-
-
-
+  //I'm trying to get the moves to display on my table here
 
   //spike on organizing data and making a move
-
   var gameState = [
       [null, null, null],
       [null, null, null],
@@ -68,8 +57,9 @@ el.addEventListener("click", modifyText, false);
 
       ];
 
-      function makeMove(xpos, ypos, playerToken) {
-          gameState [xpos][ypos] = playerToken;
+
+  function makeMove(xpos, ypos, playerToken) {
+        gameState [xpos][ypos] = playerToken;
       }
 
 
@@ -106,13 +96,10 @@ el.addEventListener("click", modifyText, false);
 
       ]
 
-      TicTacToeGame.prototype.displayMove = function(xpos, ypos){
-        this.gameState = $(this.elementPos)
-        var zeroZero = $('this.elementPos').eq(0);
-        zeroZero.text('text');
 
 
-      }
+
+
 
 
 
@@ -126,7 +113,7 @@ el.addEventListener("click", modifyText, false);
 
 
 
-}
+
 
 //okay so this is working because I gave it the window.onload function
 //it would seem that with each click I have to get a new game state going
