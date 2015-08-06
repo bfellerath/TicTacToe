@@ -1,6 +1,7 @@
 body {
   background-color: lightblue;
   font-family: "Share Tech Mono";
+  font-size: 25px;
 }
 #container {
   background-color: lightgrey;

@@ -1,32 +1,17 @@
 console.log('spikes.js is connected');
 
-
-
-
 //create a random computer move - here I am just generating a random number from 1 through 9
-
-
-
-
 
 //okay using the random number above I want to get the computer to make a random move
 //I realize I need to different random numbers, one that is between 0 and 2 and the other that is between 0 and 8
 
 /*function getRandomMove (){
 var randomMove1 = Math.floor((Math.random() * 4));
-var randomMove2 = Math.floor((Math.random() * 10));
+var randomMove2 = Math.floor((Math.random() * 4));
 
 }
 
 getRandomMove();*/
-
-
-
-
-
-
-
-
 
 //adding event listener for clicking on something
 //Okay adding an event listener is hard without there being something to add it to
@@ -36,16 +21,22 @@ getRandomMove();*/
 
 window.onload = function() {
   var boardSpace = $('.board-space');
+  // add event listener to table
+  boardSpace.on('click', modifyText);
+}
   function modifyText() {
+
     if (this.innerHTML === "null") {
+
+      //Not sure why this line is not working
+      makeMove(this.attr('row'), this.attr('column'));
       this.innerHTML = 'x';
     }   else {
       alert ('please choose an open square');
     }
   };
-  // add event listener to table
-  boardSpace.on('click', modifyText);
-}
+var boardSpace = document.getElementsByClassName('board-space');
+
 
   //I'm trying to get the moves to display on my table here
 
@@ -59,14 +50,14 @@ window.onload = function() {
 
 
   function makeMove(xpos, ypos, playerToken) {
-        gameState [xpos][ypos] = playerToken;
+      gameState [xpos][ypos] = playerToken;
       }
 
 
   ///wokring on a contructor function for a tic tac toe game
 
-      function TicTacToeGame (){
-          this.gameState = [[
+    function TicTacToeGame (){
+        this.gameState = [[
               null, null, null
               ],
               [
@@ -79,35 +70,22 @@ window.onload = function() {
 
       }
 
+    TicTacToeGame.prototype.makeMove = function(xpos, ypos){
+        this.gameState [xpos][ypos] = this.playerTokens[this.turnNumber % 2];
 
-
-      TicTacToeGame.prototype.makeMove = function(xpos, ypos){
-            this.gameState [xpos][ypos] = this.playerTokens[this.turnNumber % 2];
-
-            this.turnNumber ++;
+        this.turnNumber ++;
 
       }
 
       //I want to make a function that will display the move on the board
       //first I'm going to make a variable
 
-      var elementPos = [
-
-
-      ]
-
-
-
-
-
-
-
-
       var game = new TicTacToeGame();
 
       game.makeMove(0,0);
       game.makeMove(0,1);
       game.makeMove(0,2);
+      game.makeMove(1,2);
 
 
 
