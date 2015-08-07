@@ -22,19 +22,10 @@ getRandomMove();*/
 window.onload = function() {
   var boardSpace = $('.board-space');
   // add event listener to table
-  boardSpace.on('click', modifyText);
+  boardSpace.on('click', game.modifyText);
+
 }
-  function modifyText() {
 
-    if (this.innerHTML === "null") {
-
-      //Not sure why this line is not working
-      makeMove(this.attr('row'), this.attr('column'));
-      this.innerHTML = 'x';
-    }   else {
-      alert ('please choose an open square');
-    }
-  };
 var boardSpace = document.getElementsByClassName('board-space');
 
 
@@ -49,9 +40,9 @@ var boardSpace = document.getElementsByClassName('board-space');
       ];
 
 
-  function makeMove(xpos, ypos, playerToken) {
-      gameState [xpos][ypos] = playerToken;
-      }
+//  function makeMove(xpos, ypos, playerToken) {
+  //    gameState [xpos][ypos] = playerToken;
+    //  }
 
 
   ///wokring on a contructor function for a tic tac toe game
@@ -74,7 +65,10 @@ var boardSpace = document.getElementsByClassName('board-space');
         this.gameState [xpos][ypos] = this.playerTokens[this.turnNumber % 2];
 
         this.turnNumber ++;
+        getWinner();
 
+
+        console.log(xpos);
       }
 
       //I want to make a function that will display the move on the board
@@ -82,12 +76,89 @@ var boardSpace = document.getElementsByClassName('board-space');
 
       var game = new TicTacToeGame();
 
-      game.makeMove(0,0);
-      game.makeMove(0,1);
-      game.makeMove(0,2);
-      game.makeMove(1,2);
+      // game.makeMove(0,0);
+      // game.makeMove(0,1);
+      // game.makeMove(0,2);
+      // game.makeMove(1,2);
+      //game.makeMove(this.row, this.column);
 
 
+
+
+
+  TicTacToeGame.prototype.modifyText = function () {
+
+        if (this.innerHTML === 'null') {
+
+
+        console.log(this);
+        var row = $(this).attr('row');
+        var column = $(this).attr('column');
+        game.makeMove(row, column);
+        this.innerHTML = game.gameState[row][column];
+
+
+        console.log('row = ' + row);
+        console.log('column = ' + column);
+
+
+          //var column = this.attr('column');
+        //  console.log(row);
+        }   else {
+          alert ('please choose an open square');
+        }
+  };
+
+
+
+//the below functions are spiking on a getWinner function
+
+
+
+function getWinner() {
+  console.log('get winner function run');
+    if (isWinner('x')) {
+      alert('x wins!')
+      return 'x';
+    }if (isWinner('o')) {
+      alert('o wins!')
+      return 'o';
+    } else {
+      var gameDone = true;
+      for (var i = 0; i < game.gameState.length; i++){
+        for(var j = 0; j < game.gameState[i].length; j++){
+        if (game.gameState[i][j] === null){
+          gameDone = false;
+        }
+        console.log('the game is not done');
+        }
+      }
+      if (gameDone === true){
+        alert('no one wins!');
+      }
+      return null;
+    }
+}
+function isWinner(player) {
+    return winsRow(player) || winsColumn(player) || winsDiagonal(player);
+}
+function winsRow(player) {
+    return allThree(player, game.gameState[0][0], game.gameState[0][1], game.gameState[0][2]) ||
+           allThree(player, game.gameState[1][0], game.gameState[1][1], game.gameState[1][2]) ||
+           allThree(player, game.gameState[2][0], game.gameState[2][1], game.gameState[2][2]);
+}
+function winsColumn(player) {
+    return allThree(player, game.gameState[0][0], game.gameState[1][0], game.gameState[2][0]) ||
+           allThree(player, game.gameState[0][1], game.gameState[1][1], game.gameState[2][1]) ||
+           allThree(player, game.gameState[0][2], game.gameState[1][2], game.gameState[2][2]);
+}
+function winsDiagonal(player) {
+    return allThree(player, game.gameState[0][0], game.gameState[1][1], game.gameState[2][2]) ||
+           allThree(player, game.gameState[0][2], game.gameState[1][1], game.gameState[2][0]);
+}
+function allThree(player, cell_one, cell_two, cell_three) {
+    return (cell_one === player) && (cell_two === player) && (cell_three === player);
+}
 
 
 
