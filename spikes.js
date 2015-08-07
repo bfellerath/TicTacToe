@@ -110,15 +110,23 @@ var boardSpace = document.getElementsByClassName('board-space');
   };
 
 
+//spiking a reset game function
+
+function gameReset (board){
+  this.board = this.gameState;
+  return this.board;
+}
+
 
 //the below functions are spiking on a getWinner function
 
 
 
 function getWinner() {
-  console.log('get winner function run');
+//  console.log('get winner function run');
     if (isWinner('x')) {
       alert('x wins!')
+      gameReset();
       return 'x';
     }if (isWinner('o')) {
       alert('o wins!')
@@ -130,7 +138,7 @@ function getWinner() {
         if (game.gameState[i][j] === null){
           gameDone = false;
         }
-        console.log('the game is not done');
+    //    console.log('the game is not done');
         }
       }
       if (gameDone === true){
