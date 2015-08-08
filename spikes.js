@@ -28,10 +28,40 @@ window.onload = function() {
   // add event listener to table
   boardSpace.on('click', game.modifyText);
 
-
-
-
 }
+
+
+    var game;
+    var player1Name;
+    var player2Name;
+     $(document).ready(function(){
+
+
+
+      game = new TicTacToeGame();
+      player1Name = prompt("Enter player 1 name");
+      player2Name = prompt("Enter player 2 name");
+      $('.name-div1').html(player1Name + '(x)');
+      $('.name-div2').html(player2Name + '(o)');
+
+
+
+
+       });
+
+function startGame (){
+         game = new TicTacToeGame();
+         $('.name-container').text('');
+        //  player1Name = prompt("Enter player 1 name");
+        //  player2Name = prompt("Enter player 2 name");
+        //  $('.vsdiv').text('VS.');
+        //  $('.name-div1').html(player1Name + '(x)');
+        //  $('.name-div2').html(player2Name + '(o)');
+         console.log('start game new text in da house');
+
+       }
+
+
 
 
 
@@ -104,16 +134,7 @@ var boardSpace = document.getElementsByClassName('board-space');
       //I want to make a function that will display the move on the board
       //first I'm going to make a variable
       //this below function can be like the game start function
-      var game;
-      var player1Name;
-      var player2Name;
-      $(document).ready(function(){
-      game = new TicTacToeGame();
-      player1Name = prompt("Enter player 1 name");
-      player2Name = prompt("Enter player 2 name");
-      $('.name-div1').html(player1Name + '(x)');
-      $('.name-div2').html(player2Name + '(o)');
-      });
+
       // game.makeMove(0,0);
       // game.makeMove(0,1);
       // game.makeMove(0,2);
@@ -192,7 +213,8 @@ function getWinner() {
       }
       if (gameDone === true){
         alert('no one wins!');
-        $('.name-container').html("play again?");
+        $('.play-again').text("play again?");
+        $('.vsdiv').text('');
       }
       return null;
     }
@@ -218,8 +240,15 @@ function allThree(player, cell_one, cell_two, cell_three) {
     return (cell_one === player) && (cell_two === player) && (cell_three === player);
 }
 
+//maybe I need to wrap everything, literally everything, in
 
-
+$(document).ready(function(){
+  $('.name-container').on('click',function(){
+    console.log("is this working?");
+    $('.board-space').text('');
+    startGame();
+    });
+  });
 
 
 //okay so this is working because I gave it the window.onload function

@@ -32,7 +32,9 @@ body {
 }
 
 
-
+.inviso {
+  display: invisible;
+}
 
 h1 {
   color: #ff5a5a;
@@ -47,9 +49,13 @@ h1 {
   background-color: #cdb400;
   background-color: #cdff8b;
   background-color: #ffe69c;
+  border-radius: 10%;
+
   width: 250px;
   position: relative;
   display: inline-block;
+  font-size: 58px;
+
 }
 /*#ubercontainer{
     background-image: url("../images/Squirtle.jpg");
