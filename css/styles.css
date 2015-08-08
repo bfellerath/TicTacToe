@@ -1,5 +1,6 @@
 body {
   background-color: lightblue;
+
   font-family: "Share Tech Mono";
   font-size: 29px;
   width: 100%;
@@ -7,9 +8,37 @@ body {
   color: black;
 }
 
+
+
+
+.name-div1 {
+  display: inline;
+  position: relative;
+  padding: 5px;
+
+}
+.name-div2 {
+  display: inline;
+  position: relative;
+  padding: 5px;
+}
+.vs-div {
+  display: inline;
+  position: relative;
+  padding: 5px;
+}
+.name-container {
+  padding: 20px;
+}
+
+
+
+
 h1 {
   color: #ff5a5a;
   color: #cd7b29;
+  display: inline;
+  position: relative;
 
 }
 
@@ -19,7 +48,15 @@ h1 {
   background-color: #cdff8b;
   background-color: #ffe69c;
   width: 250px;
+  position: relative;
+  display: inline-block;
 }
+/*#ubercontainer{
+    background-image: url("../images/Squirtle.jpg");
+    position: relative;
+    width:100%;
+
+}*/
 #top-row {
   border-bottom: 2px solid grey;
 }

@@ -20,15 +20,31 @@ getRandomMove();*/
 //about it
 
 window.onload = function() {
+
+
+
+
   var boardSpace = $('.board-space');
   // add event listener to table
   boardSpace.on('click', game.modifyText);
 
+
+
+
 }
+
+
+
+
+
+//gameStart function
+
+TicTacToeGame.prototype.gameStart
 
 var boardSpace = document.getElementsByClassName('board-space');
 
-
+//var playerName = prompt('enter name');
+//var playerName2 = prompt('player 2 enter name');
   //I'm trying to get the moves to display on my table here
 
   //spike on organizing data and making a move
@@ -58,11 +74,25 @@ var boardSpace = document.getElementsByClassName('board-space');
               ];
               this.turnNumber = 0;
               this.playerTokens = ['x', 'o'];
-
+              this.player1Name = player1Name;
+              this.player2Name = player2Name;
       }
 
     TicTacToeGame.prototype.makeMove = function(xpos, ypos){
         this.gameState [xpos][ypos] = this.playerTokens[this.turnNumber % 2];
+
+        // var playerName = this.playerTokens % 2;
+        //
+        // //I wonder if I can use .css() jquery in here to make the name
+        // //highlighted when it is someone's turn
+        // if (this.turnNumber % 2 === 0){
+        //     $('.name-div2').css({"background-color": "green"});
+        //     $('.name-div1').css({"background-color": "lightblue"});
+        // }else {
+        //   $('.name-div1').css({"background-color": "green"});
+        //   $('.name-div2').css({"background-color": "lightblue"});
+        // }
+
 
         this.turnNumber ++;
         getWinner();
@@ -73,9 +103,17 @@ var boardSpace = document.getElementsByClassName('board-space');
 
       //I want to make a function that will display the move on the board
       //first I'm going to make a variable
-
-      var game = new TicTacToeGame();
-
+      //this below function can be like the game start function
+      var game;
+      var player1Name;
+      var player2Name;
+      $(document).ready(function(){
+      game = new TicTacToeGame();
+      player1Name = prompt("Enter player 1 name");
+      player2Name = prompt("Enter player 2 name");
+      $('.name-div1').html(player1Name + '(x)');
+      $('.name-div2').html(player2Name + '(o)');
+      });
       // game.makeMove(0,0);
       // game.makeMove(0,1);
       // game.makeMove(0,2);
@@ -88,7 +126,7 @@ var boardSpace = document.getElementsByClassName('board-space');
 
   TicTacToeGame.prototype.modifyText = function () {
 
-        if (this.innerHTML === 'null') {
+        if (this.innerHTML === '') {
 
 
         console.log(this);
@@ -96,7 +134,6 @@ var boardSpace = document.getElementsByClassName('board-space');
         var column = $(this).attr('column');
         game.makeMove(row, column);
         this.innerHTML = game.gameState[row][column];
-
 
         console.log('row = ' + row);
         console.log('column = ' + column);
@@ -111,11 +148,20 @@ var boardSpace = document.getElementsByClassName('board-space');
 
 
 //spiking a reset game function
+//
+function gameReset (){
 
-function gameReset (board){
-  this.board = this.gameState;
+  this.board = new TicTacToeGame();
+  console.log('game reset fired');
+
   return this.board;
-}
+  }
+
+
+  // var playAgain = $('.name-container');
+  // // add event listener to table
+  // playAgain.on('click', game.gameState.gameReset);
+
 
 
 //the below functions are spiking on a getWinner function
@@ -125,11 +171,14 @@ function gameReset (board){
 function getWinner() {
 //  console.log('get winner function run');
     if (isWinner('x')) {
-      alert('x wins!')
+      alert( player1Name + ' wins!');
       gameReset();
-      return 'x';
+    $('.name-container').html("play again?");
+
+    return 'x';
     }if (isWinner('o')) {
-      alert('o wins!')
+      alert(player2Name + ' wins!');
+      $('.name-container').html("play again?");
       return 'o';
     } else {
       var gameDone = true;
@@ -143,6 +192,7 @@ function getWinner() {
       }
       if (gameDone === true){
         alert('no one wins!');
+        $('.name-container').html("play again?");
       }
       return null;
     }
