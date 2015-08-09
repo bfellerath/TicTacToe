@@ -9,7 +9,10 @@ body {
 }
 
 
-
+h2 {
+  padding: 12px;
+  margin: 5px;
+}
 
 .name-div1 {
   display: inline;
@@ -28,7 +31,9 @@ body {
   padding: 5px;
 }
 .name-container {
-  padding: 20px;
+  margin-bottom: 35px;
+  margin-top: 5px;
+
 }
 
 

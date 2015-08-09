@@ -41,7 +41,7 @@ window.onload = function() {
       game = new TicTacToeGame();
       player1Name = prompt("Enter player 1 name");
       player2Name = prompt("Enter player 2 name");
-      $('.name-div1').html(player1Name + '(x)');
+      $('.name-div1').html(player1Name + '(x)' );
       $('.name-div2').html(player2Name + '(o)');
 
 
@@ -49,18 +49,24 @@ window.onload = function() {
 
        });
 
+var pointsX = 0
+var pointsO = 0;
+
 function startGame (){
          game = new TicTacToeGame();
-         $('.name-container').text('');
-        //  player1Name = prompt("Enter player 1 name");
-        //  player2Name = prompt("Enter player 2 name");
-        //  $('.vsdiv').text('VS.');
-        //  $('.name-div1').html(player1Name + '(x)');
-        //  $('.name-div2').html(player2Name + '(o)');
-         console.log('start game new text in da house');
+      //   turnNumber = 0;
+
+       $('.name-container').html(player1Name + '(x)' + " VS. " + player2Name + '(y)' );
+      //  $('.name-container').html(pointsX);
+      //  $('.name-container').text(player1Name);
 
        }
-
+//
+//
+// TicTacToeGame.prototype.pointCounter = function(points){
+//
+//
+// }
 
 
 
@@ -69,7 +75,7 @@ function startGame (){
 
 //gameStart function
 
-TicTacToeGame.prototype.gameStart
+
 
 var boardSpace = document.getElementsByClassName('board-space');
 
@@ -170,13 +176,13 @@ var boardSpace = document.getElementsByClassName('board-space');
 
 //spiking a reset game function
 //
-function gameReset (){
-
-  this.board = new TicTacToeGame();
-  console.log('game reset fired');
-
-  return this.board;
-  }
+// function gameReset (){
+//
+//   this.board = new TicTacToeGame();
+//   console.log('game reset fired');
+//
+//   return this.board;
+//   }
 
 
   // var playAgain = $('.name-container');
@@ -193,13 +199,46 @@ function getWinner() {
 //  console.log('get winner function run');
     if (isWinner('x')) {
       alert( player1Name + ' wins!');
-      gameReset();
+
+    //  gameReset();
+
+      // $('.name-div1').html("");
+      // $('.name-div2').html("");
+      // $('.vs-div').html("");
     $('.name-container').html("play again?");
+
+    pointsX++;
+    $('h2').html('SCOREBOARD');
+    if (  pointsX === 1){
+      $('.x-score').html(player1Name + ": " + pointsX + " win");
+    }else {
+        $('.x-score').html(player1Name + ": " + pointsX + " wins");
+    }
+    if (  pointsO === 1){
+        $('.o-score').html(player2Name + ": " + pointsO + " win");
+    }else {
+        $('.o-score').html(player2Name + ": " + pointsO + " wins");
+    }
+
+
 
     return 'x';
     }if (isWinner('o')) {
       alert(player2Name + ' wins!');
       $('.name-container').html("play again?");
+      pointsO++;
+      $('h2').html('SCOREBOARD');
+      if (  pointsX === 1){
+        $('.x-score').html(player1Name + ": " + pointsX + " win");
+      }else {
+          $('.x-score').html(player1Name + ": " + pointsX + " wins");
+      }
+      if ( pointsO === 1){
+          $('.o-score').html(player2Name + ": " + pointsO + " win");
+      }else {
+          $('.o-score').html(player2Name + ": " + pointsO + " wins");
+      }
+
       return 'o';
     } else {
       var gameDone = true;
@@ -213,8 +252,8 @@ function getWinner() {
       }
       if (gameDone === true){
         alert('no one wins!');
-        $('.play-again').text("play again?");
-        $('.vsdiv').text('');
+        $('.name-container').html("play again?");
+        //$('.vsdiv').text('');
       }
       return null;
     }
@@ -245,8 +284,12 @@ function allThree(player, cell_one, cell_two, cell_three) {
 $(document).ready(function(){
   $('.name-container').on('click',function(){
     console.log("is this working?");
+    // $('<.vs-div>').html('VS.');
+    // $('<.name-div1>').html(player1Name + '(x)');
+    // $('<.name-div2>').html(player2Name + '(o)');
     $('.board-space').text('');
     startGame();
+
     });
   });
 
