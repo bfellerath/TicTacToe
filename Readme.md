@@ -1,6 +1,6 @@
 ##TicTacToe
 
-![](TicTacToe/images/TicTacToe_screenshot.png)
+![](TicTacToe/images/bfellerath/TicTacToe_screenshot.png)
 
 Here is the code from the scoreboard:
 
